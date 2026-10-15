@@ -46,7 +46,7 @@ def जवाब(सवाल, k=2):
 {संदर्भ}
 
 सवाल: {सवाल}"""
-    r = client.models.generate_content(model="gemini-flash-latest", contents=प्रॉम्प्ट)
+    r = client.models.generate_content(model="gemini-3.6-flash", contents=प्रॉम्प्ट)
     return r.text
 
 if "इतिहास" not in st.session_state:
@@ -62,6 +62,8 @@ if सवाल:
     with st.chat_message("user"):
         st.write(सवाल)
     with st.chat_message("assistant"):
-        उत्तर = जवाब(सवाल)
-        st.write(उत्तर)
-    st.session_state.इतिहास.append(("assistant", उत्तर))
+        
+     try:
+            उत्तर = जवाब(सवाल)
+        except Exception as e:
+            उत्तर = "एरर: " + str(e)
