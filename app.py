@@ -62,8 +62,9 @@ if सवाल:
     with st.chat_message("user"):
         st.write(सवाल)
     with st.chat_message("assistant"):
-        
-     try:
+        try:
             उत्तर = जवाब(सवाल)
         except Exception as e:
             उत्तर = "एरर: " + str(e)
+        st.write(उत्तर)
+    st.session_state.इतिहास.append(("assistant", उत्तर))
